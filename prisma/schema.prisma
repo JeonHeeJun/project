@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["createMany"]
+}
+
+model User{
+  id  Int @id @default(autoincrement())
+  name String @unique
+  email String? @unique
+  password String?
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  comments Comment[]
+  bio String?
+  avatar String?
+  sayings Saying[]
+  likes Like[]
+  tags Tag[]
+}
+
+model Saying{
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  user User @relation(fields: [userId],references:[id])
+  comments Comment[]
+  userId Int
+  text String
+  tags Tag[]
+  likes Like[]
+}
+
+model Tag{
+  id  Int @id @default(autoincrement())
+  name String @unique
+  sayings Saying[]
+  users User[]
+
+}
+
+model Like{
+  id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  saying Saying @relation(fields: [sayingId],references:[id])
+  user User @relation(fields: [userId],references:[id])
+  sayingId Int
+  userId Int
+  @@unique([sayingId,userId])
+}
+
+model Comment{
+    id  Int @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt DateTime @updatedAt
+  text String
+  saying Saying @relation(fields: [sayingId],references:[id])
+  user User @relation(fields: [userId],references:[id])
+  sayingId Int
+  userId Int
+  
+}

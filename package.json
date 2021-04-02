@@ -1,0 +1,48 @@
+{
+  "name": "wisesaying",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "preinstall": "npx npm-force-resolutions",
+    "dev": "nodemon --exec babel-node server --delay 2s",
+    "migrate": "npx prisma migrate dev --preview-feature",
+    "studio": "npx prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeonHeeJun/example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeonHeeJun/example/issues"
+  },
+  "homepage": "https://github.com/JeonHeeJun/example#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@prisma/cli": "^2.18.0",
+    "nodemon": "^2.0.7",
+    "prisma": "^2.18.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.18.0",
+    "apollo-server": "^2.21.1",
+    "apollo-server-express": "^2.22.0",
+    "bcrypt": "^5.0.1",
+    "csv-parse": "^4.15.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "prettier-plugin-prisma": "^0.6.0"
+  },
+  "resolutions": {
+    "fs-capacitor": "^6.2.0",
+    "graphql-upload": "^11.0.0"
+  }
+}
