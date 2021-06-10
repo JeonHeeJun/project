@@ -27,21 +27,18 @@ export default{
                 else{
                     await client.like.deleteMany({
                         where:{
-                            userId:id
+                            sayingId:id
                         }
                     })
                     await client.comment.deleteMany({
                         where:{
-                            userId:id
+                            sayingId:id
                         }
                     })
-                    await client.saying.deleteMany({
+                    await client.saying.delete({
                         where:{
-                            userId:id    
+                            id    
                         }
-                    })
-                    await client.user.delete({
-                        where:{id}
                     })
                     return{
                         ok:true,

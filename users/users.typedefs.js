@@ -11,6 +11,8 @@ export default gql `
         avatar: String
         sayings(take:Int!,lastId:Int): [Saying]
         tags:[Tag]
+        totalSayings:Int
+        totalLikes:Int
     }
 
 `;

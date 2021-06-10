@@ -3,7 +3,7 @@ import { protextResolver } from "../../users/users.utils";
 
 export default {
     Mutation:{
-        uploadSaying:protextResolver(async(_,{text,tag},{loggedUser})=>{
+        uploadSaying:protextResolver(async(_,{text,tag,author},{loggedUser})=>{
             //console.log(tag)
             const tagObj = tag.map((name)=>({
                 where:{name},
@@ -11,12 +11,18 @@ export default {
             }))
             //console.log(tagObj)
             try{
-            await client.saying.create({
+            const what = await client.saying.create({
                 data:{
                     text,
                     user:{
                         connect:{
                             id:loggedUser.id,
+                        }
+                    },
+                    author:{
+                        connectOrCreate:{
+                          where:{name:author},
+                          create:{name:author}  
                         }
                     },
                     tags:{
@@ -25,9 +31,8 @@ export default {
                     
                 }
             })
-            return{
-                ok:true
-            }
+            console.log(what);
+            return what;
             }
             catch(e){
                 console.log(e)
